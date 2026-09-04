@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jujutsu Kaisen | Fanpage</title>
+    <style>
+        /* Estilos básicos para que la página se vea bien (CSS) */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #121212; /* Fondo oscuro */
+            color: #ffffff; /* Texto blanco */
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #7a0000; /* Rojo oscuro tipo JJK */
+            padding: 20px;
+            text-align: center;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #1f1f1f;
+            padding: 10px;
+        }
+        nav button {
+            background-color: transparent;
+            color: white;
+            border: 1px solid #7a0000;
+            border-radius: 5px;
+            margin: 0 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        nav button:hover {
+            background-color: #7a0000;
+        }
+        .seccion {
+            display: none; /* Oculta las secciones por defecto */
+            padding: 40px 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        .activa {
+            display: block; /* Solo muestra la sección activa */
+        }
+        h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+        h2 {
+            color: #ff4d4d;
+            border-bottom: 2px solid #333;
+            padding-bottom: 10px;
+        }
+        h3 {
+            color: #ff4d4d;
+            margin-top: 30px;
+        }
+        .imagen-banner {
+            width: 100%;             
+            max-height: 400px;       
+            object-fit: cover;       
+            border-radius: 8px;      
+            border: 1px solid #7a0000; 
+            margin: 15px 0;          
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); 
+        }
+        
+        /* NUEVOS ESTILOS PARA INICIO */
+        ul.conceptos {
+            background-color: #1a1a1a;
+            padding: 20px 20px 20px 40px;
+            border-radius: 8px;
+            border-left: 5px solid #7a0000;
+            line-height: 1.8;
+        }
+        .caja-curiosidad {
+            background-color: #2b0000;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 30px;
+            text-align: center;
+            border: 1px dashed #ff4d4d;
+        }
+        .caja-curiosidad h4 {
+            margin-top: 0;
+            color: #ffffff;
+            font-size: 1.2em;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #1f1f1f;
+            margin-top: 40px;
+            font-size: 0.8em;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Jujutsu Kaisen</h1>
+        <p>Hechiceros vs. Maldiciones</p>
+    </header>
+
+    <nav>
+        <button onclick="cambiarSeccion('inicio')">Inicio</button>
+        <button onclick="cambiarSeccion('historia')">Historia</button>
+    </nav>
+
+    <main>
+        <!-- SECCIÓN INICIO ACTUALIZADA -->
+        <div id="inicio" class="seccion activa">
+            <h2>Bienvenido a la página</h2>
+            
+            <img src="https://m.media-amazon.com/images/M/MV5BNGY4MTg3NzgtNjAwZa00ZjLRi0MThjZC0xNjVDMjc0NTI1MWI1XkEyXkFqcGdeQXVyMTEzMTI1Mjk3._V1_FMjpg_UX1000_.jpg" alt="Jujutsu Kaisen Poster" class="imagen-banner">
+            
+            <p>Esta es una web dedicada al increíble mundo de <strong>Jujutsu Kaisen</strong>, el exitoso manga y anime creado por Gege Akutami. Aquí exploraremos el oscuro y emocionante universo donde las emociones negativas toman forma física.</p>
+            
+            <h3>Conceptos Clave del Mundo JJK</h3>
+            <ul class="conceptos">
+                <li><strong>Energía Maldita:</strong> Nace de las emociones negativas de los humanos. Es la fuente de poder que alimenta tanto a hechiceros como a maldiciones.</li>
+                <li><strong>Maldiciones:</strong> Espíritus monstruosos formados por la acumulación de energía maldita en lugares con mucho estrés o miedo (como escuelas y hospitales).</li>
+                <li><strong>Hechiceros Jujutsu:</strong> Individuos entrenados capaces de controlar su energía maldita para exorcizar a las maldiciones y proteger a la humanidad.</li>
+            </ul>
+
+            <div class="caja-curiosidad">
+                <h4>¿Sabías que...?</h4>
+                <p>Gege Akutami creó a <strong>Ryomen Sukuna</strong> inspirándose en una figura de la mitología japonesa real, que era descrito como un demonio de dos caras y cuatro brazos que aterrorizó a la provincia de Hida en la antigüedad.</p>
+            </div>
+        </div>
+
+        <!-- Sección de Historia -->
+        <div id="historia" class="seccion">
+            <h2>El Comienzo (Sinopsis)</h2>
+            
+            <img src="https://www.clarin.com/2023/07/23/g6rshWAes_2000x1500__1.jpg" alt="Jujutsu Kaisen" class="imagen-banner">
+
+            <p>La historia sigue a <strong>Yuji Itadori</strong>, un estudiante de secundaria con habilidades físicas extraordinarias. Para salvar a sus amigos del Club de Ocultismo de unos monstruos conocidos como "Maldiciones", Yuji toma una decisión extrema: se traga un objeto de categoría especial, el dedo putrefacto de <strong>Ryomen Sukuna</strong> (el Rey de las Maldiciones).</p>
+            <p>Al hacerlo, Itadori se convierte en el recipiente de Sukuna. Guiado por el hechicero más fuerte, Satoru Gojo, Yuji ingresa al Colegio Técnico de Magia Metropolitana de Tokio para aprender a controlar la energía maldita, cazar los dedos restantes y, finalmente, ser ejecutado para destruir a la maldición con él.</p>
+        </div>
+    </main>
+
+    <footer>
+        <p>Proyecto creado con HTML y JavaScript.</p>
+    </footer>
+
+    <script>
+        function cambiarSeccion(idSeccion) {
+            const secciones = document.querySelectorAll('.seccion');
+            secciones.forEach(seccion => {
+                seccion.classList.remove('activa');
+            });
+
+            const seccionSeleccionada = document.getElementById(idSeccion);
+            if(seccionSeleccionada) {
+                seccionSeleccionada.classList.add('activa');
+            }
+        }
+    </script>
+
+</body>
+</html>
