@@ -4,165 +4,391 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jujutsu Kaisen | Fanpage</title>
+    <!-- Importando fuentes profesionales de Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
-        /* Estilos básicos para que la página se vea bien (CSS) */
+        /* ESTILOS GLOBALES */
         body {
-            font-family: Arial, sans-serif;
-            background-color: #121212; /* Fondo oscuro */
-            color: #ffffff; /* Texto blanco */
+            font-family: 'Roboto', sans-serif;
+            background-color: #0f0f11;
+            color: #ffffff;
             margin: 0;
             padding: 0;
-        }
-        header {
-            background-color: #7a0000; /* Rojo oscuro tipo JJK */
-            padding: 20px;
-            text-align: center;
-        }
-        nav {
-            display: flex;
-            justify-content: center;
-            background-color: #1f1f1f;
-            padding: 10px;
-        }
-        nav button {
-            background-color: transparent;
-            color: white;
-            border: 1px solid #7a0000;
-            border-radius: 5px;
-            margin: 0 10px;
-            padding: 10px 20px;
-            font-size: 16px;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-        nav button:hover {
-            background-color: #7a0000;
-        }
-        .seccion {
-            display: none; /* Oculta las secciones por defecto */
-            padding: 40px 20px;
-            max-width: 800px;
-            margin: 0 auto;
-            line-height: 1.6;
-        }
-        .activa {
-            display: block; /* Solo muestra la sección activa */
-        }
-        h1 {
-            margin: 0;
-            font-size: 2.5em;
-        }
-        h2 {
-            color: #ff4d4d;
-            border-bottom: 2px solid #333;
-            padding-bottom: 10px;
-        }
-        h3 {
-            color: #ff4d4d;
-            margin-top: 30px;
-        }
-        .imagen-banner {
-            width: 100%;             
-            max-height: 400px;       
-            object-fit: cover;       
-            border-radius: 8px;      
-            border: 1px solid #7a0000; 
-            margin: 15px 0;          
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); 
-        }
-        
-        /* NUEVOS ESTILOS PARA INICIO */
-        ul.conceptos {
-            background-color: #1a1a1a;
-            padding: 20px 20px 20px 40px;
-            border-radius: 8px;
-            border-left: 5px solid #7a0000;
-            line-height: 1.8;
-        }
-        .caja-curiosidad {
-            background-color: #2b0000;
-            padding: 20px;
-            border-radius: 8px;
-            margin-top: 30px;
-            text-align: center;
-            border: 1px dashed #ff4d4d;
-        }
-        .caja-curiosidad h4 {
-            margin-top: 0;
-            color: #ffffff;
-            font-size: 1.2em;
+            overflow-x: hidden;
         }
 
-        footer {
-            text-align: center;
-            padding: 20px;
-            background-color: #1f1f1f;
+        /* BARRA DE NAVEGACIÓN SUPERIOR */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 5%;
+            background-color: #000000;
+            border-bottom: 2px solid #8a0303;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .logo {
+            font-family: 'Oswald', sans-serif;
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        .logo span {
+            color: #d11111;
+        }
+        nav button {
+            background: none;
+            border: none;
+            color: #aaa;
+            font-family: 'Roboto', sans-serif;
+            font-weight: 700;
+            font-size: 14px;
+            text-transform: uppercase;
+            margin-left: 30px;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        nav button:hover, nav button.btn-activo {
+            color: #d11111; /* Se pinta rojo si estás en esa sección */
+        }
+
+        /* CONFIGURACIÓN DE PESTAÑAS */
+        .seccion {
+            display: none;
+            animation: fadeIn 0.5s ease-in;
+        }
+        .activa {
+            display: block;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* SECCIÓN INICIO - HERO (ARRIBA) */
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 60px 5%;
+            background: linear-gradient(110deg, #0f0f11 60%, #8a0303 60%);
+            min-height: 70vh;
+        }
+        .hero-texto {
+            width: 50%;
+        }
+        .etiqueta {
+            color: #ff4d4d;
+            font-weight: 700;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+        .hero-texto h1 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 80px;
+            margin: 0;
+            line-height: 0.9;
+            text-transform: uppercase;
+        }
+        .hero-texto h1 .delineado {
+            -webkit-text-stroke: 2px #d11111;
+            color: transparent;
+            display: block;
+        }
+        .hero-texto p {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #cccccc;
+            margin-top: 20px;
+            max-width: 90%;
+        }
+        .estadisticas {
+            display: flex;
+            gap: 50px;
             margin-top: 40px;
-            font-size: 0.8em;
-            color: #888;
+        }
+        .stat h2 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 45px;
+            color: #d11111;
+            margin: 0;
+            line-height: 1;
+        }
+        .stat p {
+            margin: 5px 0 0 0;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #999;
+            letter-spacing: 1px;
+        }
+        .hero-imagen {
+            width: 40%;
+            text-align: right;
+        }
+        .hero-imagen img {
+            width: 100%;
+            max-width: 450px;
+            border-radius: 10px;
+            box-shadow: -15px 15px 0px rgba(0, 0, 0, 0.5);
+            transform: rotate(2deg);
+        }
+
+        /* SECCIÓN INICIO - PERSONAJES (MÁS ABAJO) */
+        .personajes-container {
+            padding: 80px 5%;
+            background-color: #131315; /* Fondo un poco más claro para separar secciones */
+        }
+        .titulo-centrado {
+            text-align: center;
+            font-family: 'Oswald', sans-serif;
+            font-size: 40px;
+            margin-bottom: 50px;
+            text-transform: uppercase;
+        }
+        .titulo-centrado span {
+            color: #d11111;
+        }
+
+        /* CUADRÍCULA DE TARJETAS */
+        .grid-personajes {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .tarjeta {
+            background-color: #000000;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid #222;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+            cursor: pointer;
+        }
+        /* Efecto al pasar el mouse por la tarjeta */
+        .tarjeta:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(209, 17, 17, 0.4);
+            border-color: #d11111;
+        }
+        .img-tarjeta {
+            width: 100%;
+            height: 350px;
+            overflow: hidden;
+        }
+        .img-tarjeta img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top;
+            transition: transform 0.5s ease;
+        }
+        /* La imagen hace zoom al pasar el mouse */
+        .tarjeta:hover .img-tarjeta img {
+            transform: scale(1.1);
+        }
+        .info-tarjeta {
+            padding: 20px;
+        }
+        .rango {
+            color: #ff4d4d;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .info-tarjeta h3 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 24px;
+            margin: 5px 0 10px 0;
+        }
+        .info-tarjeta p {
+            font-size: 14px;
+            color: #aaa;
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        /* SECCIÓN HISTORIA Y RESUMEN */
+        .historia-container {
+            padding: 60px 5%;
+            max-width: 1000px;
+            margin: 0 auto;
+            line-height: 1.8;
+            font-size: 18px;
+        }
+        .historia-container h2 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 40px;
+            color: #d11111;
+            border-bottom: 2px solid #333;
+            padding-bottom: 10px;
+            margin-bottom: 30px;
         }
     </style>
 </head>
 <body>
 
+    <!-- BARRA SUPERIOR -->
     <header>
-        <h1>Jujutsu Kaisen</h1>
-        <p>Hechiceros vs. Maldiciones</p>
+        <div class="logo">Jujutsu <span>Kaisen</span></div>
+        <nav>
+            <button id="btn-inicio" class="btn-activo" onclick="cambiarSeccion('inicio', this)">Inicio</button>
+            <button id="btn-historia" onclick="cambiarSeccion('historia', this)">La Historia</button>
+            <!-- NUEVO BOTÓN PARA EL RESUMEN -->
+            <button id="btn-resumen" onclick="cambiarSeccion('resumen', this)">Resumen (Streamlit)</button>
+        </nav>
     </header>
 
-    <nav>
-        <button onclick="cambiarSeccion('inicio')">Inicio</button>
-        <button onclick="cambiarSeccion('historia')">Historia</button>
-    </nav>
-
     <main>
-        <!-- SECCIÓN INICIO ACTUALIZADA -->
+        <!-- SECCIÓN: INICIO -->
         <div id="inicio" class="seccion activa">
-            <h2>Bienvenido a la página</h2>
             
-            <img src="https://m.media-amazon.com/images/M/MV5BNGY4MTg3NzgtNjAwZa00ZjLRi0MThjZC0xNjVDMjc0NTI1MWI1XkEyXkFqcGdeQXVyMTEzMTI1Mjk3._V1_FMjpg_UX1000_.jpg" alt="Jujutsu Kaisen Poster" class="imagen-banner">
-            
-            <p>Esta es una web dedicada al increíble mundo de <strong>Jujutsu Kaisen</strong>, el exitoso manga y anime creado por Gege Akutami. Aquí exploraremos el oscuro y emocionante universo donde las emociones negativas toman forma física.</p>
-            
-            <h3>Conceptos Clave del Mundo JJK</h3>
-            <ul class="conceptos">
-                <li><strong>Energía Maldita:</strong> Nace de las emociones negativas de los humanos. Es la fuente de poder que alimenta tanto a hechiceros como a maldiciones.</li>
-                <li><strong>Maldiciones:</strong> Espíritus monstruosos formados por la acumulación de energía maldita en lugares con mucho estrés o miedo (como escuelas y hospitales).</li>
-                <li><strong>Hechiceros Jujutsu:</strong> Individuos entrenados capaces de controlar su energía maldita para exorcizar a las maldiciones y proteger a la humanidad.</li>
-            </ul>
+            <!-- Parte de arriba (Hero) -->
+            <div class="hero">
+                <div class="hero-texto">
+                    <div class="etiqueta">Colegio Técnico de Magia Metropolitana</div>
+                    <h1>Expansión <span class="delineado">De Dominio</span></h1>
+                    <p>Las emociones negativas de los humanos se acumulan en maldiciones. Lo que ocurre dentro del mundo de la hechicería puede significar la diferencia entre la vida y una muerte horrible.</p>
+                    
+                    <div class="estadisticas">
+                        <div class="stat">
+                            <h2>2</h2>
+                            <p>Temporadas</p>
+                        </div>
+                        <div class="stat">
+                            <h2>47</h2>
+                            <p>Episodios</p>
+                        </div>
+                        <div class="stat">
+                            <h2>2020</h2>
+                            <p>Año de estreno</p>
+                        </div>
+                    </div>
+                </div>
 
-            <div class="caja-curiosidad">
-                <h4>¿Sabías que...?</h4>
-                <p>Gege Akutami creó a <strong>Ryomen Sukuna</strong> inspirándose en una figura de la mitología japonesa real, que era descrito como un demonio de dos caras y cuatro brazos que aterrorizó a la provincia de Hida en la antigüedad.</p>
+                <div class="hero-imagen">
+                    <img src="https://a.storyblok.com/f/178900/848x1199/dce361b9e0/jujutsu-kaisen-season-4-anime-super-teaser-visual.jpeg/m/filters:quality(95)format(webp)" alt="Poster Jujutsu Kaisen">
+                </div>
+            </div>
+
+            <!-- Parte de abajo (Personajes) -->
+            <div class="personajes-container">
+                <h2 class="titulo-centrado">Personajes <span>Principales</span></h2>
+                
+                <div class="grid-personajes">
+                    <!-- Tarjeta 1 -->
+                    <div class="tarjeta">
+                        <div class="img-tarjeta">
+                            <img src="https://static.wikia.nocookie.net/jujutsu-kaisen/images/6/66/Yuji_Itadori_-_Anime.jpg/revision/latest?cb=20201031200040&path-prefix=es" alt="Yuji Itadori">
+                        </div>
+                        <div class="info-tarjeta">
+                            <span class="rango">Recipiente de Sukuna</span>
+                            <h3>Yuji Itadori</h3>
+                            <p>Estudiante de primer año con una fuerza física descomunal. Dispuesto a sacrificarse para asegurar que los demás tengan "una muerte justa".</p>
+                        </div>
+                    </div>
+
+                    <!-- Tarjeta 2 -->
+                    <div class="tarjeta">
+                        <div class="img-tarjeta">
+                            <img src="https://i.pinimg.com/736x/f1/ca/bb/f1cabb7719973c0681d4bcf6ca0d839c.jpg" alt="Satoru Gojo">
+                        </div>
+                        <div class="info-tarjeta">
+                            <span class="rango">Clase Especial</span>
+                            <h3>Satoru Gojo</h3>
+                            <p>El hechicero más fuerte de la actualidad. Es profesor en el Colegio Técnico de Magia y posee la técnica de los Seis Ojos.</p>
+                        </div>
+                    </div>
+
+                    <!-- Tarjeta 3 -->
+                    <div class="tarjeta">
+                        <div class="img-tarjeta">
+                            <img src="https://i.pinimg.com/736x/41/a4/11/41a411cc9ffd53a4a47f178b7f6b5d45.jpg" alt="Megumi Fushiguro">
+                        </div>
+                        <div class="info-tarjeta">
+                            <span class="rango">Hechicero de 2do Grado</span>
+                            <h3>Megumi Fushiguro</h3>
+                            <p>Un estudiante de primer año muy serio y calculador. Utiliza la Técnica de Sombras de las Diez Especies para invocar shikigamis.</p>
+                        </div>
+                    </div>
+
+                    <!-- Tarjeta 4 -->
+                    <div class="tarjeta">
+                        <div class="img-tarjeta">
+                            <img src="https://static.wikia.nocookie.net/jujutsu-kaisen/images/1/1f/Nobara_Kugisaki_-_Anime.jpg/revision/latest?cb=20201022190210&path-prefix=es" alt="Nobara Kugisaki">
+                        </div>
+                        <div class="info-tarjeta">
+                            <span class="rango">Hechicera de 3er Grado</span>
+                            <h3>Nobara Kugisaki</h3>
+                            <p>Una chica con un carácter fuerte y decidido que se mudó a Tokio. Pelea usando un martillo, clavos y un muñeco vudú de paja.</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <!-- Sección de Historia -->
+        <!-- SECCIÓN: HISTORIA -->
         <div id="historia" class="seccion">
-            <h2>El Comienzo (Sinopsis)</h2>
-            
-            <img src="https://www.clarin.com/2023/07/23/g6rshWAes_2000x1500__1.jpg" alt="Jujutsu Kaisen" class="imagen-banner">
+            <div class="historia-container">
+                <h2>El Comienzo del Recipiente</h2>
+                <p>La historia sigue a <strong>Yuji Itadori</strong>, un estudiante de secundaria con habilidades físicas extraordinarias. Para salvar a sus amigos del Club de Ocultismo de unos monstruos conocidos como "Maldiciones", Yuji toma una decisión extrema: se traga un objeto de categoría especial, el dedo putrefacto de <strong>Ryomen Sukuna</strong> (el Rey de las Maldiciones).</p>
+                
+                <img src="https://www.clarin.com/2023/07/23/g6rshWAes_2000x1500__1.jpg" alt="Equipo Jujutsu Kaisen" style="width: 100%; border-radius: 8px; margin: 20px 0; border: 1px solid #d11111; box-shadow: 0 10px 20px rgba(0,0,0,0.5);">
+                
+                <p>Al hacerlo, Itadori se convierte en el recipiente de Sukuna. Guiado por el hechicero más fuerte, Satoru Gojo, Yuji ingresa al Colegio Técnico de Magia para aprender a controlar la energía maldita, cazar los dedos restantes y, finalmente, ser ejecutado para destruir a la maldición con él.</p>
+            </div>
+        </div>
 
-            <p>La historia sigue a <strong>Yuji Itadori</strong>, un estudiante de secundaria con habilidades físicas extraordinarias. Para salvar a sus amigos del Club de Ocultismo de unos monstruos conocidos como "Maldiciones", Yuji toma una decisión extrema: se traga un objeto de categoría especial, el dedo putrefacto de <strong>Ryomen Sukuna</strong> (el Rey de las Maldiciones).</p>
-            <p>Al hacerlo, Itadori se convierte en el recipiente de Sukuna. Guiado por el hechicero más fuerte, Satoru Gojo, Yuji ingresa al Colegio Técnico de Magia Metropolitana de Tokio para aprender a controlar la energía maldita, cazar los dedos restantes y, finalmente, ser ejecutado para destruir a la maldición con él.</p>
+        <!-- NUEVA SECCIÓN: RESUMEN CON STREAMLIT -->
+        <div id="resumen" class="seccion">
+            <div class="historia-container">
+                <h2>Resumen de Datos (IA / Streamlit)</h2>
+                <p>A continuación se presenta un portal interactivo desarrollado en Python usando Streamlit.</p>
+                
+                <!-- ¡REEMPLAZA EL ENLACE AQUÍ ABAJO! -->
+                <iframe src="https://AQUI-VA-TU-LINK-DE-STREAMLIT.streamlit.app/?embed=true" 
+                        width="100%" 
+                        height="650px" 
+                        style="border: 2px solid #8a0303; border-radius: 8px;">
+                </iframe>
+            </div>
         </div>
     </main>
 
-    <footer>
-        <p>Proyecto creado con HTML y JavaScript.</p>
-    </footer>
-
+    <!-- SCRIPT DE NAVEGACIÓN ACTUALIZADO -->
     <script>
-        function cambiarSeccion(idSeccion) {
+        function cambiarSeccion(idSeccion, botonPresionado) {
+            // 1. Ocultar todas las secciones
             const secciones = document.querySelectorAll('.seccion');
             secciones.forEach(seccion => {
                 seccion.classList.remove('activa');
             });
 
+            // 2. Mostrar la sección seleccionada
             const seccionSeleccionada = document.getElementById(idSeccion);
             if(seccionSeleccionada) {
                 seccionSeleccionada.classList.add('activa');
             }
+
+            // 3. Quitar el color rojo de todos los botones
+            const botones = document.querySelectorAll('nav button');
+            botones.forEach(boton => {
+                boton.classList.remove('btn-activo');
+            });
+
+            // 4. Pintar de rojo el botón que se acaba de presionar
+            if(botonPresionado) {
+                botonPresionado.classList.add('btn-activo');
+            }
+            
+            // 5. Regresar el scroll hacia arriba
+            window.scrollTo(0, 0);
         }
     </script>
 
