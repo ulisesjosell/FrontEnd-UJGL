@@ -7,6 +7,23 @@
     <!-- Importando fuentes profesionales de Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
+        /* ==========================================
+           1. PERSONALIZACIÓN DE LA BARRA DE SCROLL
+           ========================================== */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f0f11;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #8a0303;
+            border-radius: 5px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #d11111;
+        }
+
         /* ESTILOS GLOBALES */
         body {
             font-family: 'Roboto', sans-serif;
@@ -39,6 +56,14 @@
         .logo span {
             color: #d11111;
         }
+
+        /* ==========================================
+           2. INDICADOR ANIMADO EN LA NAVEGACIÓN
+           ========================================== */
+        nav {
+            display: flex;
+            gap: 10px;
+        }
         nav button {
             background: none;
             border: none;
@@ -47,12 +72,32 @@
             font-weight: 700;
             font-size: 14px;
             text-transform: uppercase;
-            margin-left: 30px;
+            margin-left: 20px;
             cursor: pointer;
-            transition: color 0.3s;
+            padding-bottom: 5px;
+            position: relative;
+            transition: color 0.3s ease;
         }
-        nav button:hover, nav button.btn-activo {
-            color: #d11111; /* Se pinta rojo si estás en esa sección */
+        /* Línea animada inferior */
+        nav button::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: #d11111;
+            transition: width 0.3s ease-in-out;
+        }
+        nav button:hover {
+            color: #ffffff;
+        }
+        nav button:hover::after, 
+        nav button.btn-activo::after {
+            width: 100%;
+        }
+        nav button.btn-activo {
+            color: #d11111; 
         }
 
         /* CONFIGURACIÓN DE PESTAÑAS */
@@ -138,10 +183,10 @@
             transform: rotate(2deg);
         }
 
-        /* SECCIÓN INICIO - PERSONAJES (MÁS ABAJO) */
+        /* SECCIÓN INICIO - PERSONAJES */
         .personajes-container {
             padding: 80px 5%;
-            background-color: #131315; /* Fondo un poco más claro para separar secciones */
+            background-color: #131315;
         }
         .titulo-centrado {
             text-align: center;
@@ -162,18 +207,22 @@
             max-width: 1200px;
             margin: 0 auto;
         }
+
+        /* ==========================================
+           3. TRANSICIÓN VISUAL EN LAS TARJETAS
+           ========================================== */
         .tarjeta {
             background-color: #000000;
             border-radius: 8px;
             overflow: hidden;
             border: 1px solid #222;
-            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+            /* Transición suave para todos los cambios */
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
             cursor: pointer;
         }
-        /* Efecto al pasar el mouse por la tarjeta */
         .tarjeta:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 25px rgba(209, 17, 17, 0.4);
+            transform: translateY(-12px) scale(1.02);
+            box-shadow: 0 15px 35px rgba(209, 17, 17, 0.35);
             border-color: #d11111;
         }
         .img-tarjeta {
@@ -186,14 +235,18 @@
             height: 100%;
             object-fit: cover;
             object-position: top;
-            transition: transform 0.5s ease;
+            /* Transición fluida para el zoom de la imagen */
+            transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
-        /* La imagen hace zoom al pasar el mouse */
         .tarjeta:hover .img-tarjeta img {
-            transform: scale(1.1);
+            transform: scale(1.12);
         }
         .info-tarjeta {
             padding: 20px;
+            transition: background-color 0.3s ease;
+        }
+        .tarjeta:hover .info-tarjeta {
+            background-color: #08080a;
         }
         .rango {
             color: #ff4d4d;
@@ -240,7 +293,6 @@
         <nav>
             <button id="btn-inicio" class="btn-activo" onclick="cambiarSeccion('inicio', this)">Inicio</button>
             <button id="btn-historia" onclick="cambiarSeccion('historia', this)">La Historia</button>
-            <!-- NUEVO BOTÓN PARA EL RESUMEN -->
             <button id="btn-resumen" onclick="cambiarSeccion('resumen', this)">Resumen (Streamlit)</button>
         </nav>
     </header>
@@ -249,7 +301,6 @@
         <!-- SECCIÓN: INICIO -->
         <div id="inicio" class="seccion activa">
             
-            <!-- Parte de arriba (Hero) -->
             <div class="hero">
                 <div class="hero-texto">
                     <div class="etiqueta">Colegio Técnico de Magia Metropolitana</div>
@@ -277,7 +328,7 @@
                 </div>
             </div>
 
-            <!-- Parte de abajo (Personajes) -->
+            <!-- Personajes -->
             <div class="personajes-container">
                 <h2 class="titulo-centrado">Personajes <span>Principales</span></h2>
                 
@@ -345,45 +396,39 @@
             </div>
         </div>
 
-        <!-- NUEVA SECCIÓN: RESUMEN CON STREAMLIT -->
+        <!-- SECCIÓN: RESUMEN CON STREAMLIT -->
         <div id="resumen" class="seccion">
             <div class="historia-container">
-                <h2>Resumen de Datos (IA / Streamlit)</h2>
+                <h2>Resumen de Datos (Streamlit)</h2>
                 <p>A continuación se presenta un portal interactivo desarrollado en Python usando Streamlit.</p>
-                
                 
                 <iframe src="https://frontend-ujgl-ddsqpzp4rwugsxyjwfswlc.streamlit.app/?embed=true" width="100%" height="650px" style="border: 2px solid #8a0303; border-radius: 8px;"></iframe>
             </div>
         </div>
     </main>
 
-    <!-- SCRIPT DE NAVEGACIÓN ACTUALIZADO -->
+    <!-- SCRIPT DE NAVEGACIÓN -->
     <script>
         function cambiarSeccion(idSeccion, botonPresionado) {
-            // 1. Ocultar todas las secciones
             const secciones = document.querySelectorAll('.seccion');
             secciones.forEach(seccion => {
                 seccion.classList.remove('activa');
             });
 
-            // 2. Mostrar la sección seleccionada
             const seccionSeleccionada = document.getElementById(idSeccion);
             if(seccionSeleccionada) {
                 seccionSeleccionada.classList.add('activa');
             }
 
-            // 3. Quitar el color rojo de todos los botones
             const botones = document.querySelectorAll('nav button');
             botones.forEach(boton => {
                 boton.classList.remove('btn-activo');
             });
 
-            // 4. Pintar de rojo el botón que se acaba de presionar
             if(botonPresionado) {
                 botonPresionado.classList.add('btn-activo');
             }
             
-            // 5. Regresar el scroll hacia arriba
             window.scrollTo(0, 0);
         }
     </script>
