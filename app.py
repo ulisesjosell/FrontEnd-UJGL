@@ -1,3 +1,6 @@
+import os
+os.environ["USE_TORCH"] = "1" # Obliga a transformers a reconocer PyTorch desde el inicio
+
 import streamlit as st
 import pandas as pd
 import torch
@@ -8,7 +11,7 @@ st.set_page_config(page_title="Resumen y Análisis IA", page_icon="🤖", layout
 
 st.title("Registro de Hechiceros e IA 🤖")
 
-# --- PARTE 1: ESTADÍSTICAS (Tu código anterior) ---
+# --- PARTE 1: ESTADÍSTICAS ---
 st.subheader("Estadísticas del Colegio Técnico de Magia")
 data = {
     "Personaje": ["Yuji Itadori", "Megumi Fushiguro", "Nobara Kugisaki", "Satoru Gojo", "Kento Nanami"],
@@ -21,14 +24,15 @@ st.bar_chart(df.set_index("Personaje")["Poder Estimado (Base 100)"])
 
 st.divider() # Línea separadora
 
-# --- PARTE 2: RESUMIDOR DE IA (Código del profesor) ---
+# --- PARTE 2: RESUMIDOR DE IA ---
 st.subheader("IA: Resumidor de Expedientes")
 st.write("Utiliza este modelo de aprendizaje profundo para resumir largos reportes de misiones automáticamente.")
 
 # 2. Cargar el modelo de IA
 @st.cache_resource
 def cargar_modelo():
-    return pipeline("summarization", model="sshleifer/distilbart-cnn-12-6")
+    # El parámetro framework="pt" le dice explícitamente que use PyTorch
+    return pipeline("summarization", model="sshleifer/distilbart-cnn-12-6", framework="pt")
 
 with st.spinner("Cargando el modelo de IA (puede tardar un poco la primera vez)..."):
     resumidor = cargar_modelo()
