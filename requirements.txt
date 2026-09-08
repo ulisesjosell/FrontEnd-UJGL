@@ -1,4 +1,4 @@
 streamlit
 pandas
 transformers
-tensorflow-cpu
+torch --index-url https://download.pytorch.org/whl/cpu
