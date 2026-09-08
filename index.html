@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jujutsu Kaisen | Fanpage</title>
+    <title>Jujutsu Kaisen | Fanpage Oficial</title>
     <!-- Importando fuentes profesionales de Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
@@ -34,7 +34,9 @@
             overflow-x: hidden;
         }
 
-        /* BARRA DE NAVEGACIÓN SUPERIOR */
+        /* ==========================================
+           2. BARRA DE NAVEGACIÓN CON INDICADOR ANIMADO
+           ========================================== */
         header {
             display: flex;
             justify-content: space-between;
@@ -56,13 +58,10 @@
         .logo span {
             color: #d11111;
         }
-
-        /* ==========================================
-           2. INDICADOR ANIMADO EN LA NAVEGACIÓN
-           ========================================== */
         nav {
+            position: relative;
             display: flex;
-            gap: 10px;
+            gap: 30px;
         }
         nav button {
             background: none;
@@ -72,32 +71,23 @@
             font-weight: 700;
             font-size: 14px;
             text-transform: uppercase;
-            margin-left: 20px;
             cursor: pointer;
+            transition: color 0.3s;
             padding-bottom: 5px;
-            position: relative;
-            transition: color 0.3s ease;
         }
-        /* Línea animada inferior */
-        nav button::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -2px;
-            left: 0;
-            background-color: #d11111;
-            transition: width 0.3s ease-in-out;
-        }
-        nav button:hover {
+        nav button:hover, nav button.btn-activo {
             color: #ffffff;
         }
-        nav button:hover::after, 
-        nav button.btn-activo::after {
-            width: 100%;
-        }
-        nav button.btn-activo {
-            color: #d11111; 
+        /* Indicador animado deslizante debajo de los botones */
+        .indicador-nav {
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background-color: #d11111;
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0 0 10px #d11111;
         }
 
         /* CONFIGURACIÓN DE PESTAÑAS */
@@ -113,7 +103,7 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* SECCIÓN INICIO - HERO (ARRIBA) */
+        /* SECCIÓN INICIO - HERO */
         .hero {
             display: flex;
             align-items: center;
@@ -181,6 +171,10 @@
             border-radius: 10px;
             box-shadow: -15px 15px 0px rgba(0, 0, 0, 0.5);
             transform: rotate(2deg);
+            transition: transform 0.5s ease;
+        }
+        .hero-imagen img:hover {
+            transform: rotate(0deg) scale(1.02);
         }
 
         /* SECCIÓN INICIO - PERSONAJES */
@@ -199,7 +193,9 @@
             color: #d11111;
         }
 
-        /* CUADRÍCULA DE TARJETAS */
+        /* ==========================================
+           3. TRANSICIÓN VISUAL SUAVE EN LAS TARJETAS
+           ========================================== */
         .grid-personajes {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -207,23 +203,31 @@
             max-width: 1200px;
             margin: 0 auto;
         }
-
-        /* ==========================================
-           3. TRANSICIÓN VISUAL EN LAS TARJETAS
-           ========================================== */
         .tarjeta {
             background-color: #000000;
             border-radius: 8px;
             overflow: hidden;
             border: 1px solid #222;
-            /* Transición suave para todos los cambios */
+            /* Transición fluida para propiedades múltiples */
             transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
             cursor: pointer;
+            position: relative;
+        }
+        .tarjeta::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            box-shadow: 0 15px 30px rgba(209, 17, 17, 0.3);
+            opacity: 0;
+            transition: opacity 0.4s ease-in-out;
+            pointer-events: none;
         }
         .tarjeta:hover {
             transform: translateY(-12px) scale(1.02);
-            box-shadow: 0 15px 35px rgba(209, 17, 17, 0.35);
             border-color: #d11111;
+        }
+        .tarjeta:hover::after {
+            opacity: 1;
         }
         .img-tarjeta {
             width: 100%;
@@ -235,18 +239,13 @@
             height: 100%;
             object-fit: cover;
             object-position: top;
-            /* Transición fluida para el zoom de la imagen */
-            transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+            transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
         }
         .tarjeta:hover .img-tarjeta img {
             transform: scale(1.12);
         }
         .info-tarjeta {
             padding: 20px;
-            transition: background-color 0.3s ease;
-        }
-        .tarjeta:hover .info-tarjeta {
-            background-color: #08080a;
         }
         .rango {
             color: #ff4d4d;
@@ -267,7 +266,7 @@
             margin: 0;
         }
 
-        /* SECCIÓN HISTORIA Y RESUMEN */
+        /* SECCIÓN HISTORIA Y CURIOSIDADES EXTRA */
         .historia-container {
             padding: 60px 5%;
             max-width: 1000px;
@@ -283,6 +282,41 @@
             padding-bottom: 10px;
             margin-bottom: 30px;
         }
+        /* Estilo para caja de curiosidades y GIFs */
+        .caja-curiosidad {
+            background: #161619;
+            border-left: 4px solid #d11111;
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .btn-interactivo {
+            background-color: #d11111;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-family: 'Oswald', sans-serif;
+            font-size: 16px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.2s;
+            margin-top: 15px;
+        }
+        .btn-interactivo:hover {
+            background-color: #ff1e1e;
+            transform: scale(1.05);
+        }
+        #mensaje-secreto {
+            display: none;
+            margin-top: 15px;
+            padding: 15px;
+            background: #220505;
+            border: 1px dashed #d11111;
+            color: #ff9999;
+            border-radius: 5px;
+        }
     </style>
 </head>
 <body>
@@ -290,17 +324,18 @@
     <!-- BARRA SUPERIOR -->
     <header>
         <div class="logo">Jujutsu <span>Kaisen</span></div>
-        <nav>
+        <nav id="menu-nav">
             <button id="btn-inicio" class="btn-activo" onclick="cambiarSeccion('inicio', this)">Inicio</button>
             <button id="btn-historia" onclick="cambiarSeccion('historia', this)">La Historia</button>
-            <button id="btn-resumen" onclick="cambiarSeccion('resumen', this)">Resumen (Streamlit)</button>
+            <button id="btn-resumen" onclick="cambiarSeccion('resumen', this)">Panel (Streamlit)</button>
+            <!-- Indicador animado que se mueve con JavaScript -->
+            <div class="indicador-nav" id="indicador"></div>
         </nav>
     </header>
 
     <main>
         <!-- SECCIÓN: INICIO -->
         <div id="inicio" class="seccion activa">
-            
             <div class="hero">
                 <div class="hero-texto">
                     <div class="etiqueta">Colegio Técnico de Magia Metropolitana</div>
@@ -328,12 +363,11 @@
                 </div>
             </div>
 
-            <!-- Personajes -->
+            <!-- Personajes con la nueva transición visual -->
             <div class="personajes-container">
                 <h2 class="titulo-centrado">Personajes <span>Principales</span></h2>
                 
                 <div class="grid-personajes">
-                    <!-- Tarjeta 1 -->
                     <div class="tarjeta">
                         <div class="img-tarjeta">
                             <img src="https://static.wikia.nocookie.net/jujutsu-kaisen/images/6/66/Yuji_Itadori_-_Anime.jpg/revision/latest?cb=20201031200040&path-prefix=es" alt="Yuji Itadori">
@@ -341,11 +375,10 @@
                         <div class="info-tarjeta">
                             <span class="rango">Recipiente de Sukuna</span>
                             <h3>Yuji Itadori</h3>
-                            <p>Estudiante de primer año con una fuerza física descomunal. Dispuesto a sacrificarse para asegurar que los demás tengan "una muerte justa".</p>
+                            <p>Estudiante de primer año con fuerza física descomunal. Dispuesto a asegurar que los demás tengan una muerte justa.</p>
                         </div>
                     </div>
 
-                    <!-- Tarjeta 2 -->
                     <div class="tarjeta">
                         <div class="img-tarjeta">
                             <img src="https://i.pinimg.com/736x/f1/ca/bb/f1cabb7719973c0681d4bcf6ca0d839c.jpg" alt="Satoru Gojo">
@@ -353,11 +386,10 @@
                         <div class="info-tarjeta">
                             <span class="rango">Clase Especial</span>
                             <h3>Satoru Gojo</h3>
-                            <p>El hechicero más fuerte de la actualidad. Es profesor en el Colegio Técnico de Magia y posee la técnica de los Seis Ojos.</p>
+                            <p>El hechicero más fuerte de la actualidad. Profesor en el Colegio Técnico y poseedor de los Seis Ojos.</p>
                         </div>
                     </div>
 
-                    <!-- Tarjeta 3 -->
                     <div class="tarjeta">
                         <div class="img-tarjeta">
                             <img src="https://i.pinimg.com/736x/41/a4/11/41a411cc9ffd53a4a47f178b7f6b5d45.jpg" alt="Megumi Fushiguro">
@@ -365,11 +397,10 @@
                         <div class="info-tarjeta">
                             <span class="rango">Hechicero de 2do Grado</span>
                             <h3>Megumi Fushiguro</h3>
-                            <p>Un estudiante de primer año muy serio y calculador. Utiliza la Técnica de Sombras de las Diez Especies para invocar shikigamis.</p>
+                            <p>Utiliza la Técnica de Sombras de las Diez Especies para invocar poderosos shikigamis en combate.</p>
                         </div>
                     </div>
 
-                    <!-- Tarjeta 4 -->
                     <div class="tarjeta">
                         <div class="img-tarjeta">
                             <img src="https://static.wikia.nocookie.net/jujutsu-kaisen/images/1/1f/Nobara_Kugisaki_-_Anime.jpg/revision/latest?cb=20201022190210&path-prefix=es" alt="Nobara Kugisaki">
@@ -377,61 +408,96 @@
                         <div class="info-tarjeta">
                             <span class="rango">Hechicera de 3er Grado</span>
                             <h3>Nobara Kugisaki</h3>
-                            <p>Una chica con un carácter fuerte y decidido que se mudó a Tokio. Pelea usando un martillo, clavos y un muñeco vudú de paja.</p>
+                            <p>Carácter fuerte y decidido. Pelea con un martillo, clavos impregnados de energía maldita y un muñeco vudú.</p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- SECCIÓN: HISTORIA -->
+        <!-- SECCIÓN: HISTORIA Y CURIOSIDADES EXTRA -->
         <div id="historia" class="seccion">
             <div class="historia-container">
                 <h2>El Comienzo del Recipiente</h2>
-                <p>La historia sigue a <strong>Yuji Itadori</strong>, un estudiante de secundaria con habilidades físicas extraordinarias. Para salvar a sus amigos del Club de Ocultismo de unos monstruos conocidos como "Maldiciones", Yuji toma una decisión extrema: se traga un objeto de categoría especial, el dedo putrefacto de <strong>Ryomen Sukuna</strong> (el Rey de las Maldiciones).</p>
+                <p>La historia sigue a <strong>Yuji Itadori</strong>, un estudiante de secundaria con habilidades físicas extraordinarias. Para salvar a sus amigos del Club de Ocultismo de unos monstruos conocidos como "Maldiciones", Yuji toma una decisión extrema: se traga el dedo putrefacto de <strong>Ryomen Sukuna</strong>.</p>
                 
                 <img src="https://www.clarin.com/2023/07/23/g6rshWAes_2000x1500__1.jpg" alt="Equipo Jujutsu Kaisen" style="width: 100%; border-radius: 8px; margin: 20px 0; border: 1px solid #d11111; box-shadow: 0 10px 20px rgba(0,0,0,0.5);">
                 
-                <p>Al hacerlo, Itadori se convierte en el recipiente de Sukuna. Guiado por el hechicero más fuerte, Satoru Gojo, Yuji ingresa al Colegio Técnico de Magia para aprender a controlar la energía maldita, cazar los dedos restantes y, finalmente, ser ejecutado para destruir a la maldición con él.</p>
+                <!-- GIF / CURIOSIDAD AÑADIDA -->
+                <div class="caja-curiosidad">
+                    <h3>💡 Dato Curioso del Autor (Gege Akutami)</h3>
+                    <p>El creador de la serie ha mencionado en múltiples entrevistas que el diseño original de Sukuna y las técnicas malditas están inspiradas en mitologías urbanas japonesas y en su gusto por los mangas de terror clásicos.</p>
+                </div>
+
+                <!-- BOTÓN INTERACTIVO EXTRA -->
+                <button class="btn-interactivo" onclick="mostrarCuriosidad()">✨ Revelar regla secreta del Infinito de Gojo</button>
+                <div id="mensaje-secreto">
+                    <strong>¡Expansión de Dominio!</strong> El infinito de Satoru Gojo desacelera los ataques enemigos infinitamente antes de tocarlo, haciendo imposible que lo lastimen.
+                </div>
             </div>
         </div>
 
-        <!-- SECCIÓN: RESUMEN CON STREAMLIT -->
+        <!-- SECCIÓN: STREAMLIT -->
         <div id="resumen" class="seccion">
             <div class="historia-container">
-                <h2>Resumen de Datos (Streamlit)</h2>
-                <p>A continuación se presenta un portal interactivo desarrollado en Python usando Streamlit.</p>
+                <h2>Panel Interactivo (Streamlit)</h2>
+                <p>Herramienta analítica y registro de hechiceros integrada mediante Python.</p>
                 
-                <iframe src="https://frontend-ujgl-ddsqpzp4rwugsxyjwfswlc.streamlit.app/?embed=true" width="100%" height="650px" style="border: 2px solid #8a0303; border-radius: 8px;"></iframe>
+                <iframe src="https://frontend-ujgl-ddsqpzp4rwugsxyjwfswlc.streamlit.app/?embed=true" 
+                        width="100%" 
+                        height="650px" 
+                        style="border: 2px solid #8a0303; border-radius: 8px;">
+                </iframe>
             </div>
         </div>
     </main>
 
-    <!-- SCRIPT DE NAVEGACIÓN -->
+    <!-- SCRIPT DE NAVEGACIÓN, INDICADOR ANIMADO Y BOTÓN INTERACTIVO -->
     <script>
+        // Inicializar la posición del indicador rojo debajo del primer botón al cargar
+        window.addEventListener('DOMContentLoaded', () => {
+            const primerBoton = document.getElementById('btn-inicio');
+            actualizarIndicador(primerBoton);
+        });
+
         function cambiarSeccion(idSeccion, botonPresionado) {
+            // 1. Ocultar todas las secciones
             const secciones = document.querySelectorAll('.seccion');
-            secciones.forEach(seccion => {
-                seccion.classList.remove('activa');
-            });
+            secciones.forEach(seccion => seccion.classList.remove('activa'));
 
+            // 2. Mostrar la sección seleccionada
             const seccionSeleccionada = document.getElementById(idSeccion);
-            if(seccionSeleccionada) {
-                seccionSeleccionada.classList.add('activa');
-            }
+            if(seccionSeleccionada) seccionSeleccionada.classList.add('activa');
 
+            // 3. Quitar clase activo de los botones
             const botones = document.querySelectorAll('nav button');
-            botones.forEach(boton => {
-                boton.classList.remove('btn-activo');
-            });
+            botones.forEach(boton => boton.classList.remove('btn-activo'));
 
+            // 4. Activar el botón presionado y mover el indicador animado
             if(botonPresionado) {
                 botonPresionado.classList.add('btn-activo');
+                actualizarIndicador(botonPresionado);
             }
             
             window.scrollTo(0, 0);
         }
-    </script>
 
+        // Función para mover dinámicamente la barrita roja de navegación
+        function actualizarIndicador(boton) {
+            const indicador = document.getElementById('indicador');
+            indicador.style.width = boton.offsetWidth + 'px';
+            indicador.style.left = boton.offsetLeft + 'px';
+        }
+
+        // Función para mostrar la curiosidad interactiva con el botón
+        function mostrarCuriosidad() {
+            const cajaSecreta = document.getElementById('mensaje-secreto');
+            if (cajaSecreta.style.display === 'block') {
+                cajaSecreta.style.display = 'none';
+            } else {
+                cajaSecreta.style.display = 'block';
+            }
+        }
+    </script>
 </body>
 </html>
