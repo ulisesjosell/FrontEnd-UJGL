@@ -1,5 +1,6 @@
 import streamlit as st
 import pandas as pd
+import torch
 from transformers import pipeline
 
 # 1. Configuración de la página web
