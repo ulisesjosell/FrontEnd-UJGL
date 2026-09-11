@@ -104,16 +104,31 @@
         }
 
         /* SECCIÓN INICIO - HERO */
+        /* SECCIÓN INICIO - HERO (DISEÑO ÚNICO PARA JUJUTSU KAISEN) */
         .hero {
             display: flex;
             align-items: center;
             justify-content: space-between;
             padding: 60px 5%;
-            background: linear-gradient(110deg, #0f0f11 60%, #8a0303 60%);
+            /* Fondo de energía maldita: degradado radial oscuro con destello carmesí centrado */
+            background: radial-gradient(circle at 70% 50%, #2a0303 0%, #0f0f11 70%);
+            border-bottom: 3px solid #8a0303;
             min-height: 70vh;
+            position: relative;
+            overflow: hidden;
         }
-        .hero-texto {
-            width: 50%;
+        /* Efecto de brillo de energía maldita en el fondo */
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 600px;
+            height: 600px;
+            background: rgba(138, 3, 3, 0.15);
+            border-radius: 50%;
+            filter: blur(100px);
+            pointer-events: none;
         }
         .etiqueta {
             color: #ff4d4d;
